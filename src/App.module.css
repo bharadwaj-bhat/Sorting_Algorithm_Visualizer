@@ -1,0 +1,26 @@
+.App {
+  text-align: center;
+  /* background: black; */
+}
+
+.container {
+  display: flex;
+  align-items: flex-end;
+  transition: ease-in;
+  justify-content: center;
+  margin: 50px auto;
+}
+.container div {
+  width: 6px;
+  border-radius: 4px;
+  margin-left: 3px;
+}
+
+.nav {
+  display: flex;
+}
+
+.slider {
+  width: 40%;
+  margin: auto;
+}
