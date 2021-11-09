@@ -1,6 +1,18 @@
+body {
+  background: #0d1a26;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
 .App {
-  text-align: center;
-  /* background: black; */
+  /* text-align: center; */
+  display: grid;
+  grid-template-columns: 1fr 10fr;
+  justify-content: center;
+  position: relative;
+  margin-top: -100px;
+  height: 100vh;
+  gap: 20px;
+  /* border: 1px solid red; */
 }
 
 .container {
@@ -17,10 +29,59 @@
 }
 
 .nav {
+  height: 200px;
+  margin-top: 230px;
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 30px;
+  margin-right: -15px;
+}
+
+.nav button {
+  width: 180px;
+  padding: 10px 15px;
+  border-radius: 20px;
+  border: none;
+  /* background: #dda0dd; */
+}
+
+.arrays {
+  display: grid;
+  grid-template-columns: 16fr 3.3fr;
+  margin-top: 40px;
+  justify-content: space-evenly;
+  /* border: 1px solid red; */
+}
+.arrays > div {
+  height: 430px;
+  overflow-y: hidden;
 }
 
 .slider {
-  width: 40%;
-  margin: auto;
+  width: 30%;
+  position: absolute;
+  left: 35%;
+  bottom: 0%;
+  color: white;
+  margin-top: -200px;
+}
+.buttonDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* margin-right: -20px; */
+  align-items: center;
+  padding: 230px 0px;
+  /* border: 1px solid red; */
+}
+
+.buttonDiv button {
+  width: 165px;
+  padding: 10px 15px;
+  border-radius: 20px;
+  border: none;
+  margin-bottom: 20px;
+  margin-left: -30px;
 }

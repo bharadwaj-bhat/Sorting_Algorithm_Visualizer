@@ -59,11 +59,11 @@ export const BubbleSort = ({ wait, generateArray, arr }) => {
               {/* {n} */}
             </div>
           ))}
-        <div></div>
       </div>
-      <button onClick={() => handleSort(nums)}> Sort the array </button>
-      <button onClick={handleRandomnArray}> Randomn Array</button>
-      <h5> Bubble - Comparisons: {counter}</h5>
+      <div className={styles.buttonDiv}>
+        <button onClick={() => handleSort(nums)}> Sort the array </button>
+        <button onClick={handleRandomnArray}> Randomn Array</button>
+      </div>
     </>
   );
 };

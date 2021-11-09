@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import styles from "../App.module.css";
 import { v4 as uuid } from "uuid";
+// import styles from '../App.module.css'
 
 export const QuickSort = ({ wait, generateArray, arr }) => {
   const [nums, setNums] = useState([]);
   const [active, setActive] = useState(null);
   const [active2, setActive2] = useState(null);
-  const [sorted, setSorted] = useState(null);
-  const [counter, setCounter] = useState(0);
 
   useEffect(() => {
     // let arr = generateArray();
@@ -15,7 +14,6 @@ export const QuickSort = ({ wait, generateArray, arr }) => {
   }, [arr]);
 
   const handleRandomnArray = () => {
-    setCounter(0);
     let arr = generateArray();
     setNums(arr);
   };
@@ -56,7 +54,6 @@ export const QuickSort = ({ wait, generateArray, arr }) => {
       }
 
       await wait(4);
-      setCounter((prev) => prev + 1);
       [arr[i], arr[j]] = [arr[j], arr[i]];
       let temp = [...nums];
       setNums(temp);
@@ -73,7 +70,7 @@ export const QuickSort = ({ wait, generateArray, arr }) => {
               style={{
                 background:
                   i === active || i === active2
-                    ? "black"
+                    ? "#ffff00"
                     : n === 999
                     ? "green"
                     : "#dda0dd",
@@ -84,11 +81,13 @@ export const QuickSort = ({ wait, generateArray, arr }) => {
             </div>
           ))}
       </div>
-      <button onClick={() => handleSort(nums, 0, nums.length - 1)}>
-        {" "}
-        Sort the array{" "}
-      </button>
-      <button onClick={handleRandomnArray}> Randomn Array</button>
+      <div className={styles.buttonDiv}>
+        <button onClick={() => handleSort(nums, 0, nums.length - 1)}>
+          {" "}
+          Sort the array{" "}
+        </button>
+        <button onClick={handleRandomnArray}> Randomn Array</button>
+      </div>
     </>
   );
 };

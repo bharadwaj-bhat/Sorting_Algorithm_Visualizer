@@ -123,26 +123,19 @@ export const MergeSort = ({ wait, generateArray, arr }) => {
           ))}
         <div></div>
       </div>
-      <button
-        onClick={() => {
-          setCounter(0);
-          handleSort(nums, 0, nums.length - 1);
-        }}
-      >
-        {" "}
-        Sort the array{" "}
-      </button>
-      <button
-        onClick={() => {
-          let temp = [...nums];
-          setNums(temp);
-        }}
-      >
-        {" "}
-        temp{" "}
-      </button>
-      <button onClick={handleRandomnArray}> Randomn Array</button>
-      <h5> Quick - Comparisons: {counter}</h5>
+      <div className={styles.buttonDiv}>
+        <button
+          onClick={() => {
+            setCounter(0);
+            handleSort(nums, 0, nums.length - 1);
+          }}
+        >
+          {" "}
+          Sort the array{" "}
+        </button>
+
+        <button onClick={handleRandomnArray}> Randomn Array</button>
+      </div>
     </>
   );
 };
