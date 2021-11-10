@@ -9,6 +9,8 @@ import { Link, Switch, Route } from "react-router-dom";
 
 import Slider from "@mui/material/Slider";
 import { createTheme, ThemeProvider, styled } from "@mui/material/styles";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const theme = createTheme({
   palette: {
@@ -41,32 +43,34 @@ function App() {
     [9, "S"],
     [16, "R"],
   ]);
-  const initState = [];
-  // const [state, dispatch] = useReducer(reducer, initState);
+  const [current, setCurrent] = useState("Quick");
+  const [isSorted, setIsSorted] = useState(false);
 
   function wait(delay) {
     return new Promise((ac) => {
       setTimeout(() => {
         ac();
         return;
-      }, 10 * timer);
+      }, 100 / timer);
     });
   }
 
   useEffect(() => {
-    let arr = generateArray();
-    setArr(arr);
+    generateArray();
     handleHeaderSort(header);
   }, []);
 
-  function generateArray() {
+  const notify = () =>
+    toast("Array has already been sorted, Randomize the array and try again!");
+
+  function generateArray(n = arrSize) {
+    setIsSorted(false);
     let newArray = [];
-    for (let i = 0; i < arrSize; i++) {
+    for (let i = 0; i < n; i++) {
       let randomInt = Math.ceil(Math.random() * 95);
       newArray.push(randomInt);
     }
-
-    return newArray;
+    setArr(newArray);
   }
 
   const handleHeaderSort = async (header) => {
@@ -84,11 +88,9 @@ function App() {
     }
   };
 
-  const handleArrSlider = async (e) => {
-    let x = await setArrSize(e.target.value);
-    console.log(arrSize);
-    let y = await generateArray();
-    setArr(y);
+  const handleArrSlider = (e) => {
+    setArrSize((prev) => e.target.value);
+    generateArray(e.target.value);
   };
 
   const handleTimer = (e) => {
@@ -97,6 +99,17 @@ function App() {
 
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div
         style={{
           color: "white",
@@ -133,54 +146,108 @@ function App() {
         </div>
       </div>
       <div className={styles.App}>
-        {/* <div className={styles.nav}>
+        <div className={styles.nav}>
           <Link to="/">
-            <button> Quick </button>
+            <button
+              style={
+                current !== "Quick"
+                  ? { border: "1px solid #dda0dd" }
+                  : {
+                      background: "#dda0dd",
+                      color: "white",
+                      border: "none",
+                      transform: "scale(1.1)",
+                    }
+              }
+              onClick={() => setCurrent("Quick")}
+            >
+              {" "}
+              Quick{" "}
+            </button>
           </Link>
           <Link to="/bubbleSort">
-            <button> Bubble </button>
+            <button
+              style={
+                current !== "Bubble"
+                  ? { border: "1px solid #000080prop" }
+                  : {
+                      background: "#000080",
+                      color: "white",
+                      border: "none",
+                      transform: "scale(1.1)",
+                    }
+              }
+              onClick={() => setCurrent("Bubble")}
+            >
+              {" "}
+              Bubble{" "}
+            </button>
           </Link>
           <Link to="/selectionSort">
-            <button> Selection </button>
+            <button
+              style={
+                current !== "Selection"
+                  ? { border: "1px solid #808080" }
+                  : {
+                      background: "#808080",
+                      color: "white",
+                      border: "none",
+                      transform: "scale(1.1)",
+                    }
+              }
+              onClick={() => setCurrent("Selection")}
+            >
+              {" "}
+              Selection{" "}
+            </button>
           </Link>
           <Link to="/mergeSort">
-            <button> Merge </button>
+            <button
+              style={
+                current !== "Merge"
+                  ? { border: "1px solid #63d2dd" }
+                  : {
+                      background: "#63d2dd",
+                      color: "white",
+                      border: "none",
+                      transform: "scale(1.1)",
+                    }
+              }
+              onClick={() => setCurrent("Merge")}
+            >
+              {" "}
+              Merge{" "}
+            </button>
           </Link>
-        </div> */}
+        </div>
         <div className={styles.slider}>
           <ThemeProvider theme={theme}>
-            <Slider
-              onChange={handleArrSlider}
-              defaultValue={100}
-              step={10}
-              marks
-              min={30}
-              max={100}
-              size="small"
-              color="secondary"
-              orientation="vertical"
-              sx={{
-                '& input[type="range"]': {
-                  WebkitAppearance: "slider-vertical",
-                },
-              }}
-            />
-            <Slider
-              onChange={handleTimer}
-              defaultValue={0}
-              step={2}
-              marks
-              min={0}
-              max={10}
-              size="small"
-              color="secondary"
-              orientation="vertical"
-              sx={{
-                '& input[type="range"]': {
-                  WebkitAppearance: "slider-vertical",
-                },
-              }}
-            />
+            <div className={styles.sliderWrapper}>
+              <p> Array Size</p>
+              <Slider
+                onChange={(e) => handleArrSlider(e)}
+                defaultValue={100}
+                step={10}
+                marks
+                min={30}
+                max={100}
+                size="small"
+                color="secondary"
+              />
+            </div>
+            <div className={styles.sliderWrapper}>
+              <p>Speed</p>
+              <Slider
+                onChange={handleTimer}
+                defaultValue={9}
+                step={2}
+                marks
+                min={1}
+                max={11}
+                size="small"
+                color="secondary"
+              />
+            </div>
           </ThemeProvider>
         </div>
         <div className={styles.arrays}>
@@ -190,6 +257,9 @@ function App() {
                 arr={arr}
                 generateArray={generateArray}
                 wait={(timer) => wait(timer)}
+                isSorted={isSorted}
+                setIsSorted={setIsSorted}
+                notify={notify}
               />
             </Route>
             <Route path="/mergeSort">
@@ -197,6 +267,9 @@ function App() {
                 arr={arr}
                 generateArray={generateArray}
                 wait={(timer) => wait(timer)}
+                isSorted={isSorted}
+                setIsSorted={setIsSorted}
+                notify={notify}
               />
             </Route>
             <Route path="/bubbleSort">
@@ -204,6 +277,9 @@ function App() {
                 arr={arr}
                 generateArray={generateArray}
                 wait={(timer) => wait(timer)}
+                isSorted={isSorted}
+                setIsSorted={setIsSorted}
+                notify={notify}
               />
             </Route>
             <Route path="/selectionSort">
@@ -211,6 +287,9 @@ function App() {
                 arr={arr}
                 generateArray={generateArray}
                 wait={(timer) => wait(timer)}
+                isSorted={isSorted}
+                setIsSorted={setIsSorted}
+                notify={notify}
               />
             </Route>
           </Switch>

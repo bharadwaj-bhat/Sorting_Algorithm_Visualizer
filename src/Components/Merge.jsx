@@ -2,16 +2,14 @@
 import styles from "../App.module.css";
 import { useEffect, useState } from "react";
 
-function wait() {
-  return new Promise((ac) => {
-    setTimeout(() => {
-      ac();
-      return;
-    }, 50);
-  });
-}
-
-export const MergeSort = ({ wait, generateArray, arr }) => {
+export const MergeSort = ({
+  wait,
+  generateArray,
+  arr,
+  isSorted,
+  setIsSorted,
+  notify,
+}) => {
   const [nums, setNums] = useState([]);
   const [active, setActive] = useState(-20);
   const [counter, setCounter] = useState(0);
@@ -79,10 +77,15 @@ export const MergeSort = ({ wait, generateArray, arr }) => {
 
     let x = [...arr];
     setNums(x);
+    setIsSorted(true);
     setActive(-10);
   };
 
   const handleSort = async (a, l, r) => {
+    if (isSorted) {
+      notify();
+      return;
+    }
     if (l >= r) {
       let x = [...a];
       setNums(x);
@@ -101,10 +104,8 @@ export const MergeSort = ({ wait, generateArray, arr }) => {
   // }
 
   const handleRandomnArray = () => {
-    setCounter(0);
-
-    let arr = generateArray();
-    setNums(arr);
+    setIsSorted(false);
+    generateArray();
   };
 
   return (
@@ -125,8 +126,8 @@ export const MergeSort = ({ wait, generateArray, arr }) => {
       </div>
       <div className={styles.buttonDiv}>
         <button
+          style={{ border: "4px solid #63d2dd" }}
           onClick={() => {
-            setCounter(0);
             handleSort(nums, 0, nums.length - 1);
           }}
         >
@@ -134,7 +135,13 @@ export const MergeSort = ({ wait, generateArray, arr }) => {
           Sort the array{" "}
         </button>
 
-        <button onClick={handleRandomnArray}> Randomn Array</button>
+        <button
+          style={{ border: "4px solid #63d2dd" }}
+          onClick={handleRandomnArray}
+        >
+          {" "}
+          Randomn Array
+        </button>
       </div>
     </>
   );

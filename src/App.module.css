@@ -2,15 +2,15 @@ body {
   background: #0d1a26;
   box-sizing: border-box;
   overflow-x: hidden;
+  font-family: "Roboto", sans-serif;
 }
 .App {
   /* text-align: center; */
   display: grid;
-  /* flex-direction: column; */
   grid-template-columns: 1fr 10fr;
   justify-content: center;
   position: relative;
-  /* margin-top: -100px; */
+  margin-top: -100px;
   height: 100vh;
   gap: 20px;
   /* border: 1px solid red; */
@@ -31,22 +31,22 @@ body {
 
 .nav {
   height: 200px;
-  width: 50%;
-  margin: auto;
-  margin-top: 330px;
+  margin-top: 230px;
   display: flex;
-  position: absolute;
-  /* flex-direction: row; */
-  /* justify-content: space-between; */
-  border: 1px solid red;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  margin-left: 30px;
+  margin-right: -15px;
+  position: relative;
 }
 
 .nav button {
   width: 180px;
   padding: 10px 15px;
-  border-radius: 20px;
-  border: none;
+
+  border-radius: 25px;
+  /* border: none; */
   /* background: #dda0dd; */
 }
 
@@ -63,14 +63,14 @@ body {
 }
 
 .slider {
-  /* position: absolute; */
-  border: 1px solid red;
+  width: 50%;
+  margin: 0px auto;
+  position: absolute;
+  left: 25%;
+  bottom: 3%;
   color: white;
-  height: 400px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  /* transform: rotateZ(90deg); */
+  justify-content: space-around;
 }
 .buttonDiv {
   display: flex;
@@ -85,8 +85,15 @@ body {
 .buttonDiv button {
   width: 165px;
   padding: 10px 15px;
-  border-radius: 20px;
-  border: none;
+  border: 2px solid white;
+  border-radius: 25px;
   margin-bottom: 20px;
   margin-left: -30px;
+  background: white;
+  color: black;
+}
+.sliderWrapper {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
 }

@@ -1,10 +1,17 @@
 import { useState, useEffect } from "react";
 import styles from "../App.module.css";
 
-export const BubbleSort = ({ wait, generateArray, arr }) => {
+export const BubbleSort = ({
+  wait,
+  generateArray,
+  arr,
+  setIsSorted,
+  isSorted,
+  notify,
+}) => {
   const [nums, setNums] = useState([]);
   const [active, setActive] = useState(-20);
-  const [ind, setInd] = useState(-1);
+  const [ind, setInd] = useState(1000);
   const [counter, setCounter] = useState(0);
 
   useEffect(() => {
@@ -14,6 +21,7 @@ export const BubbleSort = ({ wait, generateArray, arr }) => {
   }, [arr]);
 
   const handleRandomnArray = () => {
+    setIsSorted(false);
     setInd(500);
     setCounter(0);
     let arr = generateArray();
@@ -21,6 +29,10 @@ export const BubbleSort = ({ wait, generateArray, arr }) => {
   };
 
   const handleSort = async (num) => {
+    if (isSorted) {
+      notify();
+      return;
+    }
     for (let i = 0; i < num.length - 1; ) {
       for (let j = 0; j < num.length - 1 - i; ) {
         setActive(j);
@@ -38,6 +50,7 @@ export const BubbleSort = ({ wait, generateArray, arr }) => {
     }
     setActive(-10);
     setInd(0);
+    setIsSorted(true);
   };
 
   return (
@@ -61,8 +74,20 @@ export const BubbleSort = ({ wait, generateArray, arr }) => {
           ))}
       </div>
       <div className={styles.buttonDiv}>
-        <button onClick={() => handleSort(nums)}> Sort the array </button>
-        <button onClick={handleRandomnArray}> Randomn Array</button>
+        <button
+          style={{ border: "4px solid #000080" }}
+          onClick={() => handleSort(nums)}
+        >
+          {" "}
+          Sort the array{" "}
+        </button>
+        <button
+          style={{ border: "4px solid #000080" }}
+          onClick={handleRandomnArray}
+        >
+          {" "}
+          Randomn Array
+        </button>
       </div>
     </>
   );
