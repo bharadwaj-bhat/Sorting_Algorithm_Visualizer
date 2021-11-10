@@ -9,7 +9,6 @@ export const SelectionSort = ({ wait, generateArray, arr }) => {
   const [current, setCurrent] = useState(null);
 
   useEffect(() => {
-    // let arr = generateArray();
     setNums(arr);
   }, [arr]);
 

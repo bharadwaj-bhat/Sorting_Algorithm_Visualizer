@@ -133,7 +133,7 @@ function App() {
         </div>
       </div>
       <div className={styles.App}>
-        <div className={styles.nav}>
+        {/* <div className={styles.nav}>
           <Link to="/">
             <button> Quick </button>
           </Link>
@@ -146,7 +146,7 @@ function App() {
           <Link to="/mergeSort">
             <button> Merge </button>
           </Link>
-        </div>
+        </div> */}
         <div className={styles.slider}>
           <ThemeProvider theme={theme}>
             <Slider
@@ -158,6 +158,12 @@ function App() {
               max={100}
               size="small"
               color="secondary"
+              orientation="vertical"
+              sx={{
+                '& input[type="range"]': {
+                  WebkitAppearance: "slider-vertical",
+                },
+              }}
             />
             <Slider
               onChange={handleTimer}
@@ -168,6 +174,12 @@ function App() {
               max={10}
               size="small"
               color="secondary"
+              orientation="vertical"
+              sx={{
+                '& input[type="range"]': {
+                  WebkitAppearance: "slider-vertical",
+                },
+              }}
             />
           </ThemeProvider>
         </div>

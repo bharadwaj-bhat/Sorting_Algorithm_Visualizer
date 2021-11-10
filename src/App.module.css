@@ -6,10 +6,11 @@ body {
 .App {
   /* text-align: center; */
   display: grid;
+  /* flex-direction: column; */
   grid-template-columns: 1fr 10fr;
   justify-content: center;
   position: relative;
-  margin-top: -100px;
+  /* margin-top: -100px; */
   height: 100vh;
   gap: 20px;
   /* border: 1px solid red; */
@@ -30,13 +31,15 @@ body {
 
 .nav {
   height: 200px;
-  margin-top: 230px;
+  width: 50%;
+  margin: auto;
+  margin-top: 330px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  position: absolute;
+  /* flex-direction: row; */
+  /* justify-content: space-between; */
+  border: 1px solid red;
   align-items: center;
-  margin-left: 30px;
-  margin-right: -15px;
 }
 
 .nav button {
@@ -60,12 +63,14 @@ body {
 }
 
 .slider {
-  width: 30%;
-  position: absolute;
-  left: 35%;
-  bottom: 0%;
+  /* position: absolute; */
+  border: 1px solid red;
   color: white;
-  margin-top: -200px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* transform: rotateZ(90deg); */
 }
 .buttonDiv {
   display: flex;

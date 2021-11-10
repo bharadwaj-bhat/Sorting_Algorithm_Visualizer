@@ -66,7 +66,6 @@ export const QuickSort = ({ wait, generateArray, arr }) => {
         {nums &&
           nums.map((n, i) => (
             <div
-              // key={uuid()}
               style={{
                 background:
                   i === active || i === active2
@@ -76,9 +75,7 @@ export const QuickSort = ({ wait, generateArray, arr }) => {
                     : "#dda0dd",
                 height: `${n * 4.5}px`,
               }}
-            >
-              {/* {n} */}
-            </div>
+            ></div>
           ))}
       </div>
       <div className={styles.buttonDiv}>
