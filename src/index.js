@@ -5,7 +5,7 @@ import App from "./App";
 import { HashRouter as Router } from "react-router-dom";
 
 ReactDOM.render(
-  <Router>
+  <Router basename="/Sorting_Algorithm_Visualizer/home">
     <App />
   </Router>,
 

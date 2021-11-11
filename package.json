@@ -1,6 +1,6 @@
 {
   "name": "algo_visualizer",
-  "homepage": "https://bharadwaj-bhat.github.io/Sorting_Algorithm_Visualizer",
+  "homepage": "https://bharadwaj-bhat.github.io/Sorting_Algorithm_Visualizer/home",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
