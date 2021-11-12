@@ -8,6 +8,7 @@ export const BubbleSort = ({
   setIsSorted,
   isSorted,
   notify,
+  setIsRunning,
 }) => {
   const [nums, setNums] = useState([]);
   const [active, setActive] = useState(-20);
@@ -15,9 +16,7 @@ export const BubbleSort = ({
   const [counter, setCounter] = useState(0);
 
   useEffect(() => {
-    // let arr = generateArray();
     setNums(arr);
-    // setInd(arr.length + 1);
   }, [arr]);
 
   const handleRandomnArray = () => {
@@ -33,6 +32,8 @@ export const BubbleSort = ({
       notify();
       return;
     }
+    setIsRunning(true);
+
     for (let i = 0; i < num.length - 1; ) {
       for (let j = 0; j < num.length - 1 - i; ) {
         setActive(j);
@@ -51,6 +52,7 @@ export const BubbleSort = ({
     setActive(-10);
     setInd(0);
     setIsSorted(true);
+    setIsRunning(false);
   };
 
   return (
@@ -86,7 +88,7 @@ export const BubbleSort = ({
           onClick={handleRandomnArray}
         >
           {" "}
-          Randomn Array
+          Random Array
         </button>
       </div>
     </>

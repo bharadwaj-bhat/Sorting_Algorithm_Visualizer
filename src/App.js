@@ -45,6 +45,7 @@ function App() {
   ]);
   const [current, setCurrent] = useState("Quick");
   const [isSorted, setIsSorted] = useState(false);
+  const [isRunning, setIsRunning] = useState(false);
 
   function wait(delay) {
     return new Promise((ac) => {
@@ -149,6 +150,7 @@ function App() {
         <div className={styles.nav}>
           <Link to="/">
             <button
+              disabled={isRunning}
               style={
                 current !== "Quick"
                   ? { border: "1px solid #dda0dd" }
@@ -167,6 +169,7 @@ function App() {
           </Link>
           <Link to="/bubbleSort">
             <button
+              disabled={isRunning}
               style={
                 current !== "Bubble"
                   ? { border: "1px solid #000080prop" }
@@ -185,6 +188,7 @@ function App() {
           </Link>
           <Link to="/selectionSort">
             <button
+              disabled={isRunning}
               style={
                 current !== "Selection"
                   ? { border: "1px solid #808080" }
@@ -203,6 +207,7 @@ function App() {
           </Link>
           <Link to="/mergeSort">
             <button
+              disabled={isRunning}
               style={
                 current !== "Merge"
                   ? { border: "1px solid #63d2dd" }
@@ -260,6 +265,8 @@ function App() {
                 isSorted={isSorted}
                 setIsSorted={setIsSorted}
                 notify={notify}
+                isRunning={isRunning}
+                setIsRunning={setIsRunning}
               />
             </Route>
             <Route path="/mergeSort">
@@ -270,6 +277,8 @@ function App() {
                 isSorted={isSorted}
                 setIsSorted={setIsSorted}
                 notify={notify}
+                isRunning={isRunning}
+                setIsRunning={setIsRunning}
               />
             </Route>
             <Route path="/bubbleSort">
@@ -280,6 +289,8 @@ function App() {
                 isSorted={isSorted}
                 setIsSorted={setIsSorted}
                 notify={notify}
+                isRunning={isRunning}
+                setIsRunning={setIsRunning}
               />
             </Route>
             <Route path="/selectionSort">
@@ -290,6 +301,8 @@ function App() {
                 isSorted={isSorted}
                 setIsSorted={setIsSorted}
                 notify={notify}
+                isRunning={isRunning}
+                setIsRunning={setIsRunning}
               />
             </Route>
           </Switch>

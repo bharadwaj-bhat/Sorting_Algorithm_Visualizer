@@ -1,4 +1,3 @@
-// import { generateArray } from "./bubbleSort";
 import styles from "../App.module.css";
 import { useEffect, useState } from "react";
 
@@ -9,6 +8,7 @@ export const SelectionSort = ({
   isSorted,
   setIsSorted,
   notify,
+  setIsRunning,
 }) => {
   const [nums, setNums] = useState(arr);
   const [active, setActive] = useState(-20);
@@ -24,7 +24,7 @@ export const SelectionSort = ({
       notify();
       return;
     }
-
+    setIsRunning(true);
     for (let i = 0; i < arr.length; ) {
       let minInd = i;
       for (let j = i + 1; j < arr.length; j++) {
@@ -43,6 +43,7 @@ export const SelectionSort = ({
     setActive(null);
     setCurrent(null);
     setIsSorted(true);
+    setIsRunning(false);
   }
 
   const handleRandomnArray = () => {
@@ -86,7 +87,7 @@ export const SelectionSort = ({
           onClick={handleRandomnArray}
         >
           {" "}
-          Randomn Array
+          Random Array
         </button>
       </div>
     </>
